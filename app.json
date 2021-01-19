@@ -1,0 +1,8 @@
+{
+  "name": "family-comms-board",
+  "description": "家族の連絡板",
+  "repository": "https://github.com/hamuyashiki/family-comms-board",
+  "logo": "",
+  "keywords": ["node"],
+  "image": "heroku/nodejs"
+}
