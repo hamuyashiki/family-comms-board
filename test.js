@@ -65,5 +65,5 @@ const readAdmin = {
   adminData6: '献立6'
 };
 const result = postsHandler.writeKondate(maxId, readAdmin)
-assert(result.selectResult === '今日の献立候補は  献立3  献立6  ですぜ');
+assert(result.selectResult === '今日の献立アンケートは  献立3  献立6  に人気があります');
 console.log('テスト５が正常に完了しました');
