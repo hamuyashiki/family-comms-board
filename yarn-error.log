@@ -32,7 +32,7 @@ npm manifest:
       "http-auth": "3.2.3",
       "pug": "2.0.0-rc.4"
     },
-    "repository": "git@github.com:hamuyashiki/intro-curriculum-3014.git"
+    "repository": "git@github.com:hamuyashiki/family-comms-board.git"
   }
 
 yarn manifest: 
