@@ -1,0 +1,105 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 献立調整アプリ
+
+  body.container(style="background-color: #f8f9fa;")
+    div.my-3
+      a(href="/logout" class="btn btn-info float-right") ログアウト
+      header
+        div.headerInner
+          h2#hyou-dai.hyoudai 献立希望アンケート
+      a(href="/top" class="float-right") ホームに戻る
+         <!--献立希望調査テーブル-->
+    form(method="post" action="/enquetes/arbitration" name="enquetes" onSubmit="return check()")
+      table#menu-table.menu(border='1')
+        tr.yokojiku
+          th メニュー
+          th 選択
+        tr
+          td(name="menu" class = 'tatejiku') #{menu1}
+          td
+            input(type="checkbox" name="orders" value="order1")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu2}
+          td
+            input(type="checkbox" name="orders" value="order2")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu3}
+          td
+            input(type="checkbox" name="orders" value="order3")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu4}
+          td
+            input(type="checkbox" name="orders" value="order4")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu5}
+          td
+            input(type="checkbox" name="orders" value="order5")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu6}
+          td
+            input(type="checkbox" name="orders" value="order6")
+        tr
+          td この中にはない
+          td
+            input(type="checkbox" name="nothing" value="otherwise" onchange="otherwise();")
+        tr
+          td.tatejiku (食べたいもの)
+          td
+            input(type="text" name="sonota" size="20" maxlength="13" disabled="true")
+      br
+      button(type="submit" class="btn btn-primary") 投稿する   
+
+      script(type="text/javascript")
+        |  function otherwise() {
+        |  // この中にはない checkboxが選択されたとき　他のcheckboxをクリアしtextboxの入力を有効にする  
+        |  var menuList = document.getElementsByName('orders');
+        |  var nothing = document.getElementsByName('nothing');
+        |  var freeEntry = document.getElementsByName('sonota');
+        |  if (nothing[0].checked) {  // sonota,freeEntry は要素0を指定しないとダメ
+        |  freeEntry[0].disabled = false;
+        |  for (i = 0; i < menuList.length; i++) {
+        |  menuList[i].checked = false;
+        |  menuList[i].disabled = true;
+        |  }
+        |  } else {
+        |  // この中にはない checkboxがはずされたとき
+        |  freeEntry[0].disabled = true; // textbox記入不可にする
+        |  freeEntry[0].value = ""; // textboxを空欄にする
+        |  for (i = 0; i < menuList.length; i++) {
+        |  menuList[i].disabled = false;
+        |  }
+        |  }
+        |  }
+        |  // checkboxやtextboxに必要な入力がされていない場合に　エラーを出す
+        |  function check() {
+        |  var menuList = document.getElementsByName('orders');
+        |  var freeEntry = document.getElementsByName('sonota');
+        |  var counter = 0;
+        |  for (i = 0; i < menuList.length; i++) {
+        |  if (menuList[i].checked === false) {
+        |  ;
+        |  }else {
+        |  counter++;
+        |  }
+        |  }
+        |  if(freeEntry[0].value === "") {
+        |  ;
+        |  }else{
+        |  counter++;
+        |  }
+        |  console.info("カウンターは" + counter);
+        |  if(counter === 0) {
+        |  alert("メニューを選ぶか食べたいものを記入してください"); // エラーメッセージ
+        |  return false;
+        |  }else {                
+        |  return true;
+        |  }
+        |  }

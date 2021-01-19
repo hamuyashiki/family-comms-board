@@ -1,0 +1,55 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 管理者トップ
+    
+  body.container.bg-light
+    div.my-3
+      a(href="/logout").btn.btn-info.float-right ログアウト
+      div.d-flex
+        img(src="./favicon.ico").flex-low    
+        h2 献立の登録
+      a(href="/top").float-right ホームに戻る
+
+  form(method="post" action="/admin-result")
+    table(border='1')#menu-table.menu 
+      tr.yokojiku
+        th 番号
+        th メニュー
+      tr
+        td.tatejiku 1
+        td
+          input(type="text" name="menu" value=menu1)
+      tr
+        td.tatejiku 2
+        td
+          input(type="text" name="menu" value=menu2)
+      tr
+        td.tatejiku 3
+        td
+          input(type="text" name="menu" value=menu3)
+      tr
+        td.tatejiku 4
+        td
+          input(type="text" name="menu" value=menu4)
+      tr
+        td.tatejiku 5
+        td
+          input(type="text" name="menu" value=menu5)
+      tr
+        td.tatejiku 6
+        td
+          input(type="text" name="menu" value=menu6)
+    br
+    div.form-group
+      button(type="submit" class="btn btn-primary") 登録
+
+  script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+  script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+  crossorigin="anonymous")

@@ -1,0 +1,70 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 家族の連絡板
+
+  body.container.bg-light
+    div.my-3
+      a(href="/logout").btn.btn-info.float-right ログアウト
+      div.d-flex
+        img(src="./favicon.ico").flex-low      
+        h1.ml-3.mt-2 連絡板
+      a(href="/top").float-right ホームに戻る
+    
+    div
+    h3 新規投稿
+      div.d-flex
+        img(src="favicon_send.ico").flex-low
+        h6.my-auto 宛先にチェック(チェックなしはAdminのみに送付)
+    form(method="post" action="/posts/board")
+      div.form-group
+        span to guest1
+        - let isSendToG1 = (user === "guest1") // 送信先のチェックボックスの自分についてはチェック不可にする
+        input(type="checkbox" name="guest1" disabled=isSendToG1)
+        span.ml-3 to guest2
+        - let isSendToG2 = (user === "guest2")
+        input(type="checkbox" name="guest2" disabled=isSendToG2)
+        span.ml-3 to guest3
+        - let isSendToG3 = (user === "guest3")
+        input(type="checkbox" name="guest3" disabled=isSendToG3)
+        br
+        textarea(name="content" cols=40 rows=4).form-control
+      div.form-group
+        button(type="submit").btn.btn-primary 投稿
+
+    h3 投稿一覧
+    each post in posts
+      
+      div.card.my-3
+        div.card-body
+          div.d-flex
+            p.card-text(style="white-space:pre; overflow:auto;") #{post.content}
+            div.mx-5            
+              - var isMenu1 = (post.kindOfContent === 'menu1')
+              if isMenu1
+                img(src="/favicon_menu1.ico")
+              - var isMenu2 = (post.kindOfContent === 'menu2')
+              if isMenu2
+                img(src="/favicon_menu2.ico")
+              - var isMenu3 = (post.kindOfContent === 'menu3')
+              if isMenu3
+                img(src="/favicon_menu3.ico")            
+              
+        div.card-footer
+          div 投稿日時: #{post.formattedCreatedAt}
+          div 投稿者: #{post.postedBy}
+          - var isDeletable = (user === post.postedBy || user === 'admin')
+          if isDeletable
+            form(method="post" action="/posts?delete=1")
+              input(type="hidden" name="id" value=post.id)
+              button(type="submit").btn.btn-danger.float-right 削除
+
+      script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+      script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+      crossorigin="anonymous")

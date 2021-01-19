@@ -1,0 +1,112 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 献立調整アプリ
+  body.container(style="background-color: #f8f9fa;")
+    div.my-3
+      a(href="/logout" class="btn btn-info float-right") ログアウト
+    header
+      div.headerInner
+        h1#hyou-dai.hyoudai 献立の決定
+    a(href="/top" class="float-right") ホームに戻る
+         <!--献立決定テーブル-->    
+    form(method="post" action="/enquetes/decision" onSubmit="return check()")
+      table#menu-table.menu(border='1' style="background-color: white;")
+        tr.yokojiku
+          th メニュー
+          th 選択
+        tr
+          td(name="menu" class = 'tatejiku') #{menu1}
+          td
+            input(type="radio" name="menulist" value=menu1 onchange="clearText();")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu2}
+          td
+            input(type="radio" name="menulist" value=menu2 onchange="clearText();")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu3}
+          td
+            input(type="radio" name="menulist" value=menu3 onchange="clearText();")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu4}
+          td
+            input(type="radio" name="menulist" value=menu4 onchange="clearText();")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu5}
+          td
+            input(type="radio" name="menulist" value=menu5 onchange="clearText();")
+        tr
+          td(name="menu" class = 'tatejiku') #{menu6}
+          td
+            input(type="radio" name="menulist" value=menu6 onchange="clearText();")
+        tr
+          td.tatejiku この中にはない
+          td
+            input(type="radio" name="menulist" value="この中にはない" onchange="otherwise();")
+        tr
+          td.tatejiku (自由記入)
+          td
+            input(type="text" name="request" size="20" maxlength="13" disabled="true")
+      br
+      button(type="submit" class="btn btn-primary") 連絡
+
+    script(type="text/javascript")
+      |  var menuList = document.getElementsByName('menulist');
+      |  console.log(menuList[6]);
+      |  var freeEntry = document.getElementsByName('request');
+      |  function otherwise() {
+      |   // この中にはない checkboxが選択されたときtextboxの入力を有効にする
+      |  if (menuList[6].checked) {  // sonota,freeEntry は要素0を指定しないとダメ
+      |  freeEntry[0].disabled = false;
+      |  console.log('hoge');
+      |  } else { }
+      |  }
+      |  function clearText() {
+      |  // この中にはない 以外のcheckboxが選択されたとき
+      |  freeEntry[0].disabled = true; // textbox記入不可にする
+      |  freeEntry[0].value = ""; // textboxを空欄にする
+      |  console.log('poyo');
+      |  }
+      |  // checkboxやtextboxに必要な入力がされていない場合に　エラーを出す
+      |  function check() {
+      |  var menuList = document.getElementsByName('menulist');
+      |  var freeEntry = document.getElementsByName('request');
+      |  var counter = 0;
+      |  for (i = 0; i < menuList.length-1; i++) {
+      |  if (menuList[i].checked === false) {
+      |  ;
+      |  } else {
+      |  counter++;
+      |  }
+      |  }
+      |  if (freeEntry[0].value === "") {
+      |  ;
+      |  } else {
+      |  counter++;
+      |  }
+      |  console.info("カウンターは" + counter);
+      |  if (counter === 0) {
+      |  alert("メニューを選ぶか記入をしてください"); // エラーメッセージ
+      |  return false;
+      |  } else {
+      |  return true;
+      |  }
+      |  }
+
+    div.my-3
+      p 参考）
+      p アンケート結果
+      p #{enquetesResult}
+      P リクエスト
+      P #{requests}
+
+    script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",
+    crossorigin="anonymous")

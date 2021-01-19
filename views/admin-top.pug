@@ -1,0 +1,25 @@
+doctype html
+html(lang="jp")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet",
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
+    crossorigin="anonymous")
+    title 管理者トップ
+    
+  body.container.bg-light
+    div.my-3
+      a(href="/logout").btn.btn-info.float-right ログアウト
+      div.d-flex
+        img(src="./favicon.ico")
+        h1.ml-3.mt-2 家族の連絡板
+  a(href="/howtouse") 使い方
+  br
+  a(href="/communication") 連絡板
+  br
+  a(href="/admin") メニューを登録する
+  br
+  a(href="/enquetes/kondate") メニューの希望を投票する
+  br
+  a(href="/decision/kondate") メニューを決定する
