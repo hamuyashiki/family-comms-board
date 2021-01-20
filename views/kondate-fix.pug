@@ -64,14 +64,12 @@ html(lang="jp")
       |   // この中にはない checkboxが選択されたときtextboxの入力を有効にする
       |  if (menuList[6].checked) {  // sonota,freeEntry は要素0を指定しないとダメ
       |  freeEntry[0].disabled = false;
-      |  console.log('hoge');
       |  } else { }
       |  }
       |  function clearText() {
       |  // この中にはない 以外のcheckboxが選択されたとき
       |  freeEntry[0].disabled = true; // textbox記入不可にする
       |  freeEntry[0].value = ""; // textboxを空欄にする
-      |  console.log('poyo');
       |  }
       |  // checkboxやtextboxに必要な入力がされていない場合に　エラーを出す
       |  function check() {

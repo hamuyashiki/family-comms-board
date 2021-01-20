@@ -17,7 +17,7 @@ html(lang="jp")
         h2 献立の登録
     a(href="/top").float-right ホームに戻る
 
-  form(method="post" action="/reg-result")
+  form(method="post" action="/reg-result" onSubmit="return check()")
     table(border='1')#menu-table.menu 
       tr.yokojiku
         th 番号
@@ -49,6 +49,26 @@ html(lang="jp")
     br
     div.form-group
       button(type="submit" class="btn btn-primary") 登録
+
+  script(type="text/javascript")
+    |  // textboxに一つも入力がされていない場合に　エラーを出す
+    |  function check() {
+    |  var menus = document.getElementsByName('menu');
+    |  var counter = 0;
+    |  for (i = 0; i < menus.length-1; i++) {
+    |  if (menus[i].value === "") {
+    |  ;
+    |  } else {
+    |  counter++;
+    |  }
+    |  }
+    |  if (counter === 0) {
+    |  alert("メニューを一つ以上記入してください"); // エラーメッセージ
+    |  return false;
+    |  } else {
+    |  return true;
+    |  }
+    |  }
 
   script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
   script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
