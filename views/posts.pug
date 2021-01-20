@@ -22,7 +22,7 @@ html(lang="jp")
       div.d-flex
         img(src="favicon_send.ico").flex-low
         h6.my-auto 宛先にチェック(チェックなしはAdminのみに送付)
-    form(method="post" action="/posts/board")
+    form(method="post" action="/communication")
       div.form-group
         span to guest1
         - let isSendToG1 = (user === "guest1") // 送信先のチェックボックスの自分についてはチェック不可にする

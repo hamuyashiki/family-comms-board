@@ -7,13 +7,13 @@ html(lang="jp")
     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",
     crossorigin="anonymous")
-    title 献立調整アプリ
+    title 献立希望アンケート
   body.container(style="background-color: #f8f9fa;")
     div.my-3
       a(href="/logout" class="btn btn-info float-right") ログアウト
     header
       div.headerInner
-        h1#hyou-dai.hyoudai 献立の決定
+        h2#hyou-dai.hyoudai 献立の決定
     a(href="/top" class="float-right") ホームに戻る
          <!--献立決定テーブル-->    
     form(method="post" action="/enquetes/decision" onSubmit="return check()")
