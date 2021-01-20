@@ -51,19 +51,19 @@ html(lang="jp")
       button(type="submit" class="btn btn-primary") 登録
 
   script(type="text/javascript")
-    |  // textboxに一つも入力がされていない場合に　エラーを出す
+    |  // textboxに空欄がある場合に　エラーを表示する
     |  function check() {
     |  var menus = document.getElementsByName('menu');
     |  var counter = 0;
     |  for (i = 0; i < menus.length-1; i++) {
     |  if (menus[i].value === "") {
-    |  ;
+    |  counter++; // 空欄の数を数える
     |  } else {
-    |  counter++;
+    |  ;
     |  }
     |  }
-    |  if (counter === 0) {
-    |  alert("メニューを一つ以上記入してください"); // エラーメッセージ
+    |  if (counter !== 0) {                  // 空欄の数が0ではない
+    |  alert("メニューを全て記入してください"); // エラーメッセージ
     |  return false;
     |  } else {
     |  return true;
