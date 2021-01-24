@@ -14,13 +14,19 @@ html(lang="jp")
       a(href="/logout").btn.btn-info.float-right ログアウト
       div.d-flex
         img(src="./favicon.ico")
-        h1.ml-3.mt-2 家族の連絡板
-  a(href="/howtouse") 使い方
-  br
-  a(href="/communication") 連絡板
-  br
-  a(href="/kondate-reg") メニューを登録する
-  br
-  a(href="/enquetes/kondate") メニューの希望を投票する
-  br
-  a(href="/decision/kondate") メニューを決定する
+        h2.ml-3.mt-2 家族の連絡板
+    a(href="/howtouse") 使い方
+    br
+    a(href="/communication") 連絡板
+    br
+    a(href="/posts") メニューを登録する
+    br
+    a(href="/decision/kondate") メニューを決定する
+    br
+    - var isSubmit = (submitButton === "submitPermit")
+      if isSubmit
+        a(href="/enquetes/kondate") メニューの希望を投票する
+      else
+        h7(style={color:"red"}) 現在献立アンケートは使えません
+        br
+        h7(style={color:"red"}) アンケートをアクティブにするためには献立を更新してください

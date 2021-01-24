@@ -58,7 +58,6 @@ html(lang="jp")
 
     script(type="text/javascript")
       |  var menuList = document.getElementsByName('menulist');
-      |  console.log(menuList[6]);
       |  var freeEntry = document.getElementsByName('request');
       |  function otherwise() {
       |   // この中にはない checkboxが選択されたときtextboxの入力を有効にする
@@ -88,7 +87,6 @@ html(lang="jp")
       |  } else {
       |  counter++;
       |  }
-      |  console.info("カウンターは" + counter);
       |  if (counter === 0) {
       |  alert("メニューを選ぶか記入をしてください"); // エラーメッセージ
       |  return false;
